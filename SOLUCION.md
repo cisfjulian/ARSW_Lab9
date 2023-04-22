@@ -117,13 +117,41 @@ Comparando la escalabilidad horizontal y vertical, llega a ser mas costosa la ho
 **Preguntas**
 
 * ¿Cuáles son los tipos de balanceadores de carga en Azure y en qué se diferencian?, ¿Qué es SKU, qué tipos hay y en qué se diferencian?, ¿Por qué el balanceador de carga necesita una IP pública?
+Los publicos y privados. Los publicos proporcionan conexiones hacia afuera para las maquinas virtuales dentro de la red. Se usan para balancear el trafico de internet a las Vms. Y los privados son solamente usados para el frontend. Usados para balancear el trafico dentro de alguna red virtual. 
+
+SKU son combinaciones de maquinas virtuales y sus especificaciones para componer una sola unidad de inventario. Se diferencian en que cada una tiene un procesador determinado y vCPU para cubrir segun las necesidades que se tengan.
+
 * ¿Cuál es el propósito del *Backend Pool*?
+
+Definir el grupo de recursos a los que va a ser redireccionado el trafico por el balanceador de carga. 
+
 * ¿Cuál es el propósito del *Health Probe*?
+
+Sirve para detectar el estado en el que se encuentra el endpoint. Ya que si no se recibe respuesta del endpoint determinado el balanceador no redireccionara el trafico para ese endpoint que no esta funcionando o segun las reglas realiza alguna accion.
+
 * ¿Cuál es el propósito de la *Load Balancing Rule*? ¿Qué tipos de sesión persistente existen, por qué esto es importante y cómo puede afectar la escalabilidad del sistema?.
+
+Utilizada para definir como el trafico proveniente se va a distribuir a todas las instancias del Backend Pool. Tiene tipos de persistencia ClientIp(2-tuple) especifica que las peticiones subsecuentes de ese cliente Ip van a ser manejadas por esa misma instancia. Y Client Protocol(3-tuple) que especifica que las peticiones subsecuentes de la misma direccion ip del cliente y protocolo seran manejadas por la misma instancia del back.
+
 * ¿Qué es una *Virtual Network*? ¿Qué es una *Subnet*? ¿Para qué sirven los *address space* y *address range*?
+
+Es una red que permite conectar maquinas virtuales y dispositivos, sin importar su ubicacion. Para poder comunicarse entre usuarios, internet y redes locales.
+Subnet son subredes para que sea mas eficiente la comunicacion. Partirciones de una IP en pequeños segmentos. 
+Address space es la cantidad de memoria alojada para todas las posibles direcciones ip que se puedan utilizar.
+Address range  es un rango para direcciones privadas.
+
 * ¿Qué son las *Availability Zone* y por qué seleccionamos 3 diferentes zonas?. ¿Qué significa que una IP sea *zone-redundant*?
+
+Avaliability Zone son data center aislados en regiones especificas los cuales son accesibles. Se seleccionan diferentes zonas para que en caso de que falle o se caiga alguna zona no falle el servicio, solo una de las maquinas. Mejorando RTO y RPO.
+
+Que la Ip pertenezca a esa zona.
+
 * ¿Cuál es el propósito del *Network Security Group*?
-* Informe de newman 1 (Punto 2)
+
+Filtrar el trafico entre los recursos Azure en una red virtual de azure. A traves de reglas establecidas para aprobar o denegar trafico proveniente o el trafico saliente de algunos servicios.
+
+* Informe de newman 1 (Punto 2) Puesto arriba junto los demas pantallazos.
+
 * Presente el Diagrama de Despliegue de la solución.
 
 
